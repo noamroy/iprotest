@@ -12,7 +12,7 @@
       $row = mysqli_fetch_array($result); 
       if(is_array($row)) {
         //$message = 'success';
-        header ('location: http://localhost/iprotest/homepage.php?id='.$row[0]); // SUBMIT FIX
+        header ('location: http://localhost/iprotest/homepage.php?user_id='.$row[0]); // SUBMIT FIX
       } else {
         $message = "Invalid Username or Password!";
       }

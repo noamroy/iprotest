@@ -1,9 +1,9 @@
 <?php
     include 'db.php';
     include "config.php";
-    if(!empty($_GET["id"])) { //true if form was submitted
+    if(!empty($_GET["user_id"])) { //true if form was submitted
       $query ="SELECT * FROM tbl_87_users WHERE user_id='"
-        .$_GET["id"]
+        .$_GET["user_id"]
         ."';";
       echo $query; // can't start echo if header comer after it
       $result = mysqli_query($connection , $query);
@@ -38,18 +38,20 @@
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Profile</a>
-                        <a href="myUpcomingprotests.html">My Upcoming protests</a>      <!-- TO FIX! -->
-                        <a href="create_protest.html">Create protest</a>                <!-- TO FIX! -->
-                        <a href="searchProtest.html">Search protest</a>                 <!-- TO FIX! -->
-                        <a href="index.php">Log out</a>
+                        <?php
+                            echo '<a href="#">Profile</a>';
+                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
+                            echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
+                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
+                        ?>
+                            <a href="index.php">Log out</a>
                     </div>
                 </div>
                 <?php
                     echo "<h4>HI, ".$row[2]."</h4>";
                 ?>
                 <?php
-                    echo '<a href="homepage.php?id='.$row[0].'">';
+                    echo '<a href="homepage.php?user_id='.$row[0].'">';
                 ?>
                     <section id="logo"></section>
                 </a>
@@ -66,21 +68,21 @@
                     </section>
                     <section>
                         <?php
-                            echo '<a href="myUpcomingProtests.php?id='.$row[0].'">';
+                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">';
                         ?>
                             <h2 >My Upcoming protests</h2>
                         </a>
                     </section>
                     <section>
                         <?php
-                            echo '<a href="searchProtest.php?id='.$row[0].'">';
+                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">';
                         ?>
                             <h2>Search protest</h2>
                         </a>
                     </section>
                     <section>
                         <?php
-                            echo '<a href="manageProtests.php?id='.$row[0].'">';
+                            echo '<a href="protestList.php?user_id='.$row[0].'&page=3">';
                         ?>
                             <h2>Manage protests</h2>
                         </a>
