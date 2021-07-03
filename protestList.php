@@ -89,16 +89,13 @@
                 <?php
                     if ($page == 1){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
-                        WHERE prot_id=(SELECT prot_id FROM tbl_87_connect where user_id=".$_GET["user_id"].") 
+                        WHERE prot_id=(SELECT prot_id FROM tbl_87_connect WHERE user_id=".$_GET['user_id'].") 
                         AND prot_status=1 "."
                         LIMIT 10;";
                     }
                     elseif ($page == 2){
-                        echo "NEED TO IMPLEMENT SQL";   //FIX;
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
-                        WHERE prot_id=(SELECT prot_id FROM tbl_87_connect where user_id=".$_GET["user_id"].") 
-                        AND prot_status=1 "."
-                        LIMIT 10;";
+                        WHERE prot_status=1 LIMIT 10;";
                     }
                     elseif ($page == 3){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
@@ -108,26 +105,43 @@
                     }                    
                     //echo $query; // can't start echo if header comer after it
                     $result = mysqli_query($connection , $query);
-                    $n = $result->num_rows;                    
-                    echo "<table class='table table-striped'>";
-                    echo "<thead> <tr> <th scope='row'>Name</th> <th scope='row'>Location</th><th scope='row'>Date</th><th scope='row'>Status</th></tr></thead>";
-                    echo "<tbody>";
-                    for ($i=0; $i<$n; $i++) {    
-                        $row = mysqli_fetch_array($result);
-                        echo '<a href="protest.php?user_id='.$_GET["user_id"].' prot_id='.$row[0].'">'; //TO FIX!!!!!!!
-                        echo "<tr> <th scope='row'>".$row[1]."</th> <td>".$row[2]."</td> <td>".$row[3]."</td>";
-                        echo "<td>";
-                        if ($row[4] == 3)
-                            echo "Not checked";
-                        elseif ($row[4] == 2)
-                            echo "not relevant";
-                        elseif ($row[4] == 1)
-                            echo "approved";
-                        elseif ($row[4] == 0)
-                            echo "Decline";
-                        echo "</td>";
-                        echo "</tr>"; 
-                        echo "</a>";
+                    if (!empty($result)){
+                        $n = $result->num_rows;            
+                    }
+                    else{
+                        $n = 0;
+                    }
+                    ?>
+                    <table class='table table-striped'>
+                        <thead> 
+                            <tr>
+                                <th scope='row'>Name</th>
+                                <th scope='row'>Location</th>
+                                <th scope='row'>Date</th>
+                                <th scope='row'>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                for ($i=0; $i<$n; $i++) {    
+                                    $row = mysqli_fetch_array($result);
+                                    echo "<tr> ".
+                                            "<th scope='row'>".
+                                                "<a href='protestDetails.php?user_id=".$_GET["user_id"]."&prot_id=".$row[0]."'>".$row[1]."</a>".
+                                            "</th>".
+                                            "<td>".$row[2]."</td>".
+                                            "<td>".$row[3]."</td>";
+                                        echo "<td>";
+                                        if ($row[4] == 3)
+                                            echo "Not checked";
+                                        elseif ($row[4] == 2)
+                                            echo "not relevant";
+                                        elseif ($row[4] == 1)
+                                            echo "approved";
+                                        elseif ($row[4] == 0)
+                                            echo "Decline";
+                                        echo "</td>";
+                                    echo "</tr>"; 
                     }
                     echo "</tbody>";
                     echo "</table>";

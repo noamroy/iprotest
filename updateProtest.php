@@ -26,11 +26,15 @@
           header ('location: http://localhost/iprotest/protestList.php?user_id='.$_POST["prot_owner"].'&page=3');
         }
     }
-    if(!empty($_GET["user_id"])) { //true if form was submitted
+    if(!empty($_GET["user_id"])||!empty($_GET["prod_id"])) { //true if form was submitted
         $query ="SELECT * FROM tbl_87_users WHERE user_id=".$_GET["user_id"].";";
         //echo $query; // can't start echo if header comer after it
         $result = mysqli_query($connection , $query);
         $row = mysqli_fetch_array($result);
+        $query ="SELECT * FROM tbl_87_protests WHERE prot_id=".$_GET["prot_id"].";";
+        //echo $query; // can't start echo if header comer after it
+        $result = mysqli_query($connection , $query);
+        $prot_row = mysqli_fetch_array($result);
     }
     else{
         $message = "FORBIDDEN PLACE";
@@ -48,7 +52,7 @@
         <script src="js/scripts.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css"/>
-        <title>createProtest</title>
+        <title>updateProtest</title>
     </head>
     <body id="createProtest">
         <?php if (!empty($message)) {echo $message;} ?>
@@ -76,14 +80,15 @@
                 </a>
             </header>
             <main id="test"> <!-- FIX -->
-                <h1>Create Protest</h1>
+                <h1>Update Protest</h1>
                 <?php
-                echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';
+                echo '<form name="updateProtest" action="updateProtest.php?user_id="'.$row[0].'&prod_id="'.$prot_row[0].' method="POST">';
                 ?>
-                
                     <div class="mb-3 form-group required">
                         <label class="form-label"> 
-                            <input type="text" class="form-control" name="prot_name" placeholder="Protest Name" require>
+                            <?php
+                                echo'<input type="text" class="form-control" name="prot_name" value='.$prot_row[1].'require>';
+                            ?>
                         </label>
                     </div>
                     <?php
