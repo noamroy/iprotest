@@ -1,24 +1,23 @@
 <?php
     include 'db.php';
-    include "config.php";
+    include "config.php";   
     if(!empty($_POST["prot_owner"])){
         $date=$_POST["prot_date"];
         $time=$_POST["prot_time"];        
         $combinedDT = date('Y-m-d H:i:s', strtotime("$date $time"));
-        $query ="INSERT INTO tbl_87_protests (prot_name,prot_address,prot_time,prot_cause,prot_notes,prot_police,prot_status,prot_owner,prot_publish_1,prot_publish_2,prot_publish_3,prot_publish_4)
-        VALUES ('"
-        .$_POST["prot_name"]."','"
-        .$_POST["prot_address"]."','"
-        .$combinedDT."','"
-        .$_POST["prot_cause"]."','"
-        .$_POST["prot_notes"]."','"
-        ."NOT YET GIVEN"."','"
-        ."3"."','"
-        .$_POST["prot_owner"]."','"
-        .$_POST["prot_share_1"]."','"
-        .$_POST["prot_share_2"]."','"
-        .$_POST["prot_share_3"]."','"
-        .$_POST["prot_share_4"]."');";
+        $query ="UPDATE tbl_87_protests SET prot_name= '".$_POST["prot_name"]."', 
+        prot_address= '".$_POST["prot_address"]."', 
+        prot_time= '".$combinedDT."', 
+        prot_cause= '".$_POST["prot_cause"]."', 
+        prot_notes= '".$_POST["prot_notes"]."', 
+        prot_police= '".$_POST["prot_police"]."', 
+        prot_status=3"." , 
+        prot_owner=".$_POST["prot_owner"]." , 
+        prot_publish_1='".$_POST["prot_share_1"]."', 
+        prot_publish_2='".$_POST["prot_share_2"]."', 
+        prot_publish_3='".$_POST["prot_share_3"]."', 
+        prot_publish_4='".$_POST["prot_share_4"]."' 
+        WHERE prot_id=".$_POST["prot_id"].";";
         echo "<h1>".$query."</h1>";
         $result = mysqli_query($connection , $query);
         if ($result){
@@ -26,18 +25,20 @@
           header ('location: http://localhost/iprotest/protestList.php?user_id='.$_POST["prot_owner"].'&page=3');
         }
     }
-    if(!empty($_GET["user_id"])||!empty($_GET["prod_id"])) { //true if form was submitted
-        $query ="SELECT * FROM tbl_87_users WHERE user_id=".$_GET["user_id"].";";
-        //echo $query; // can't start echo if header comer after it
-        $result = mysqli_query($connection , $query);
-        $row = mysqli_fetch_array($result);
-        $query ="SELECT * FROM tbl_87_protests WHERE prot_id=".$_GET["prot_id"].";";
-        //echo $query; // can't start echo if header comer after it
-        $result = mysqli_query($connection , $query);
-        $prot_row = mysqli_fetch_array($result);
-    }
     else{
-        $message = "FORBIDDEN PLACE";
+        if(!empty($_GET["user_id"])||!empty($_GET["prod_id"])) { //true if form was submitted
+            $query ="SELECT * FROM tbl_87_users WHERE user_id=".$_GET["user_id"].";";
+            //echo $query; // can't start echo if header comer after it
+            $result = mysqli_query($connection , $query);
+            $row = mysqli_fetch_array($result);
+            $query ="SELECT * FROM tbl_87_protests WHERE prot_id=".$_GET["prot_id"].";";
+            //echo $query; // can't start echo if header comer after it
+            $result = mysqli_query($connection , $query);
+            $prot_row = mysqli_fetch_array($result);
+        }
+        else{
+            $message = "FORBIDDEN PLACE";
+        }
     }
 ?>
 
@@ -82,41 +83,62 @@
             <main id="test"> <!-- FIX -->
                 <h1>Update Protest</h1>
                 <?php
-                echo '<form name="updateProtest" action="updateProtest.php?user_id="'.$row[0].'&prod_id="'.$prot_row[0].' method="POST">';
+                    echo '<form name="updateProtest" action="updateProtest.php?user_id='.$row[0].'&prod_id='.$prot_row[0].'" method="POST" autocomplete="on">';
                 ?>
-                    <div class="mb-3 form-group required">
+                    <div class="mb-3 form-group">
                         <label class="form-label"> 
                             <?php
-                                echo'<input type="text" class="form-control" name="prot_name" value='.$prot_row[1].'require>';
+                                echo'<input type="text" class="form-control" name="prot_name" value="'.$prot_row[1].'" require>';
                             ?>
                         </label>
                     </div>
                     <?php
-                        echo '<input type="hidden" name="prot_owner" value='.$row[0].'">';
+                        echo '<input type="hidden" name="prot_owner" value='.$_GET["user_id"].'>';
+                    ?>
+                    <?php
+                        echo '<input type="hidden" name="prot_id" value='.$prot_row[0].'>';
+                    ?>
+                    <?php
+                        echo '<input type="hidden" name="prot_police" value="'.$prot_row[6].'">';
                     ?>
                     <div class="mb-3">
                         <label class="form-label">
-                            <input type="text" class="form-control" name="prot_address" placeholder="Address">
+                            <?php
+                                echo'<input type="text" class="form-control" name="prot_address" value="'.$prot_row[2].'" require>';
+                            ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
-                            <input type="date" class="form-control" name="event_date" placeholder="Date">
+                            <?php
+                                $time = new DateTime($prot_row[3]);
+                                $date = $time->format('Y-m-d');
+                                $dts = new DateTime();
+                                $dts = $dts->format('Y-m-d');
+                                echo'<input type="date" class="form-control" name="prot_date" value="'.$date.'" min="'.$dts.'" require>';
+                            ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
-                            <input type="time" class="form-control" name="prot_time"  placeholder="Time">
+                            <?php
+                                $time = $time->format('H:i');
+                                echo'<input type="time" class="form-control" name="prot_time" value="'.$time.'" require>';
+                            ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
-                            <input type="text" class="form-control" name="prot_cause" placeholder="Cause">
+                            <?php
+                                echo'<input type="text" class="form-control" name="prot_cause" value="'.$prot_row[4].'" >';
+                            ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
-                            <textarea name="notes" class="form-control" placeholder="prot_notes" rows="4"></textarea>
+                            <?php
+                                echo'<textarea name="notes" class="form-control" rows="4">'.$prot_row[5].'</textarea>';
+                            ?>
                         </label>
                     </div>
                     <h2> Share on: </h2>
@@ -140,7 +162,9 @@
                     </div>
                     <div class="buttomsFlexContainer">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
-                        <a href="protestList.php?user_id='.$row[0].'&page=3"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>
+                        <?php 
+                            echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=3'><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";
+                        ?>
                     </div>
                 </form>
             </main>
