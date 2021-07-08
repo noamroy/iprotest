@@ -1,24 +1,25 @@
+
 <?php
-    include 'db.php';
-    include "config.php";
-    if(!empty($_GET["user_id"])) { //true if form was submitted
-      $query ="SELECT * FROM tbl_87_users WHERE user_id='"
-        .$_GET["user_id"]
-        ."';";
-      echo $query; // can't start echo if header comer after it
-      $result = mysqli_query($connection , $query);
-      $row = mysqli_fetch_array($result); 
-      if(is_array($row)) {
-        //$message = 'success';
-      } else {
-        $message = "FORBIDDEN PLACE";
-      }
-    }
-    else{
-        $message = "FORBIDDEN PLACE";
-    }
-    
+include 'db.php';
+include "config.php";
+if(!empty($_GET["user_id"])) { //true if form was submitted
+  $query ="SELECT * FROM tbl_87_users WHERE user_id='"
+    .$_GET["user_id"]
+    ."';";
+  echo $query; // can't start echo if header comer after it
+  $result = mysqli_query($connection , $query);
+  $row = mysqli_fetch_array($result); 
+  if(is_array($row)) {
+    //$message = 'success';
+  } else {
+    $message = "FORBIDDEN PLACE";
+  }
+}
+else{
+    $message = "FORBIDDEN PLACE";
+}
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +34,6 @@
         <title>homePage</title>
     </head>
     <body id="homePage">
-        <div class="wrapper">
             <header class="flexContainer">
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
@@ -44,7 +44,6 @@
                             echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
                             echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
                         ?>
-                            <a href="index.php">Log out</a>
                     </div>
                 </div>
                 <?php
@@ -53,9 +52,10 @@
                 <?php
                     echo '<a href="homepage.php?user_id='.$row[0].'">';
                 ?>
-                    <section id="logo"></section>
+                <section id="logo"></section>
                 </a>
             </header>
+            <div class="wrapper">
             <main>
                 <?php
                     echo "<h1>HI, ".$row[2]."</h1>";
@@ -68,22 +68,22 @@
                     </section>
                     <section>
                         <?php
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">';
-                        ?>
-                            <h2 >My Upcoming protests</h2>
-                        </a>
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=1">';
+                    ?>
+                        <h2 >My Upcoming protests</h2>
+                    </a>
                     </section>
                     <section>
                         <?php
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">';
-                        ?>
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=2">';
+                    ?>
                             <h2>Search protest</h2>
                         </a>
                     </section>
                     <section>
                         <?php
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=3">';
-                        ?>
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=3">';
+                    ?>
                             <h2>Manage protests</h2>
                         </a>
                     </section>

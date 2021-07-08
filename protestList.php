@@ -41,7 +41,7 @@
                 echo "manageProtests";
             echo "</title>";
         ?>
-        
+
     </head>
     <body id="manageProtest">
         <div class="wrapper">

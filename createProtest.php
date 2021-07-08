@@ -52,7 +52,7 @@
     </head>
     <body id="createProtest">
         <?php if (!empty($message)) {echo $message;} ?>
-        <div class="wrapper">
+       
             <header class="flexContainer">
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
@@ -75,6 +75,7 @@
                     <section id="logo"></section>
                 </a>
             </header>
+            <div class="wrapper">
             <main id="test"> <!-- FIX -->
                 <h1>Create Protest</h1>
                 <?php
