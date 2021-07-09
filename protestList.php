@@ -1,16 +1,14 @@
 <?php
     include 'db.php';
     include "config.php";
-    if(!empty($_GET["user_id"])||!empty($_GET["page"])) { //true if form was submitted
+    if(!empty($_GET["user_id"])||!empty($_GET["page"])) {
       $query ="SELECT * FROM tbl_87_users WHERE user_id='"
         .$_GET["user_id"]
         ."';";
-      echo $query; // can't start echo if header comer after it
       $page = $_GET["page"];
       $result = mysqli_query($connection , $query);
       $row = mysqli_fetch_array($result);
       if(is_array($row)) {
-        //$message = 'success';
       } else {
         $message = "FORBIDDEN PLACE";
       }
@@ -18,6 +16,15 @@
     else{
         $message = "FORBIDDEN PLACE";
     }
+    if(!empty($_GET["event_counter"])){
+        $counter = $_GET["event_counter"];
+    }
+    else{
+        $counter = 10;
+    }
+    $query ="UPDATE tbl_87_protests SET prot_status=2 WHERE prot_time < CURRENT_TIMESTAMP;";
+    $result = mysqli_query($connection , $query);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +48,6 @@
                 echo "manageProtests";
             echo "</title>";
         ?>
-
     </head>
     <body id="manageProtest">
         <div class="wrapper">
@@ -87,23 +93,26 @@
                 ?>
                 <section id="chart" class="table">
                 <?php
-                    if ($page == 1){
+                    if ($page == 1 && $row[1] == 1){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
                         WHERE prot_id=(SELECT prot_id FROM tbl_87_connect WHERE user_id=".$_GET['user_id'].") 
                         AND prot_status=1 "."
-                        LIMIT 10;";
+                        LIMIT ".$counter.";";
                     }
-                    elseif ($page == 2){
+                    elseif ($page == 2 || ($page == 1 && $row[1] == 2)){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
-                        WHERE prot_status=1 LIMIT 10;";
+                        WHERE prot_status=1 LIMIT ".$counter.";";
                     }
                     elseif ($page == 3){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
                         WHERE prot_owner=".$_GET["user_id"]."
                         AND prot_status!=2
-                        LIMIT 10;";
-                    }                    
-                    //echo $query; // can't start echo if header comer after it
+                        LIMIT ".$counter.";";
+                    }
+                    elseif ($page == 4){
+                        $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
+                        WHERE prot_status=3 LIMIT ".$counter.";";
+                    }                  
                     $result = mysqli_query($connection , $query);
                     if (!empty($result)){
                         $n = $result->num_rows;            
@@ -141,17 +150,22 @@
                                         elseif ($row[4] == 0)
                                             echo "Decline";
                                         echo "</td>";
-                                    echo "</tr>"; 
-                    }
-                    echo "</tbody>";
-                    echo "</table>";
-                ?>
+                                    echo "</tr>";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                    <?php
+                        $counter = $counter+10;
+                        if($n==$counter){
+                            echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=".$page."&event_counter=".$counter."'><button type='button'>More protests</button></a>";
+                        }
+                    ?>
                 </section>
             </main>
             <footer></footer>
         </div>
         <script>
-        //createManageTable();
         menu();
         </script>
     </body>

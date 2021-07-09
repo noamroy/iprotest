@@ -19,16 +19,13 @@
         .$_POST["prot_share_2"]."','"
         .$_POST["prot_share_3"]."','"
         .$_POST["prot_share_4"]."');";
-        echo "<h1>".$query."</h1>";
         $result = mysqli_query($connection , $query);
         if ($result){
-          //$message = 'success';   //TO FIX!!!!!!!!!!!
-          header ('location: http://localhost/iprotest/protestList.php?user_id='.$_POST["prot_owner"].'&page=3');
+          header ('location: '.LOCAL_URL.'iprotest/protestList.php?user_id='.$_POST["prot_owner"].'&page=3');   //SUBMIT FIX
         }
     }
-    if(!empty($_GET["user_id"])) { //true if form was submitted
+    if(!empty($_GET["user_id"])) {
         $query ="SELECT * FROM tbl_87_users WHERE user_id=".$_GET["user_id"].";";
-        //echo $query; // can't start echo if header comer after it
         $result = mysqli_query($connection , $query);
         $row = mysqli_fetch_array($result);
     }
@@ -156,6 +153,5 @@
 </html>
 
 <?php
-    //close DB connection
     mysqli_close($connection);
 ?>

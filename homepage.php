@@ -5,7 +5,7 @@
       $query ="SELECT * FROM tbl_87_users WHERE user_id='"
         .$_GET["user_id"]
         ."';";
-      echo $query; // can't start echo if header comer after it
+      //echo $query; // can't start echo if header comer after it
       $result = mysqli_query($connection , $query);
       $row = mysqli_fetch_array($result); 
       if(is_array($row)) {
@@ -82,9 +82,15 @@
                     </section>
                     <section>
                         <?php
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=3">';
+                            if ($row[1]==1){
+                                echo '<a href="protestList.php?user_id='.$row[0].'&page=3">';
+                                echo"<h2>Manage protests</h2>";
+                            }
+                            else {
+                                echo '<a href="protestList.php?user_id='.$row[0].'&page=4">';
+                                echo"<h2>Waiting to approve protests</h2>";
+                            }
                         ?>
-                            <h2>Manage protests</h2>
                         </a>
                     </section>
                 </section>

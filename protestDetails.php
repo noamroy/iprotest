@@ -1,42 +1,31 @@
 <?php
     include 'db.php';
     include "config.php";
-    if(!empty($_GET["user_id"])||!empty($_GET["prot_id"])) { //true if form was submitted
+    if(!empty($_GET["user_id"])||!empty($_GET["prot_id"])) {
       if(!empty($_GET["join"])) {
         $stat = $_GET["join"];
         if ($stat == 1){
             $query ="INSERT INTO tbl_87_connect (prot_id, user_id)
             VALUES (".$_GET["prot_id"].",".$_GET["user_id"].");";
-            //echo $query; // can't start echo if header comer after it
             $result = mysqli_query($connection , $query);
-            if ($result){
-                //echo "SUCCESS JOIN";
-            }
         }
         elseif ($stat == 2) {
             $query ="DELETE FROM tbl_87_connect WHERE 
             prot_id =".$_GET["prot_id"]." AND 
             user_id =".$_GET["user_id"].";";
-            //echo $query; // can't start echo if header comer after it
             $result = mysqli_query($connection , $query);
-            if ($result){
-                //echo "SUCCESS DELETE";
-            }
         }
       }
       $query ="SELECT * FROM tbl_87_users WHERE user_id="
         .$_GET["user_id"]
         .";";
-      //echo $query; // can't start echo if header comer after it
       $prot = $_GET["prot_id"];
       $result = mysqli_query($connection , $query);
       $row = mysqli_fetch_array($result);
       $query ="SELECT * FROM tbl_87_protests WHERE prot_id=".$_GET["prot_id"].";";
-      //echo $query; // can't start echo if header comer after it
       $result = mysqli_query($connection , $query);
       $prot_row = mysqli_fetch_array($result);
       if(is_array($row)&&is_array($prot_row)) {
-        //$message = 'success';
       } else {
         $message = "FORBIDDEN PLACE";
       }
@@ -118,15 +107,18 @@
                     <a href='#'><button type="button" class="btn btn-info"> Share </button></a>
                 </section>
                 <section>
-                    <button type="button" class="btn btn-join" id="joinbtn">Join Protest</button>
-                </section>
-                <section>
                     <?php
                         $query ="SELECT * FROM tbl_87_connect WHERE prot_id=".$_GET["prot_id"]." AND
                             user_id=".$_GET["user_id"].";";
                         $result = mysqli_query($connection , $query);
                         $check = mysqli_fetch_array($result);
-                        if ($prot_row[8]==$_GET["user_id"]){
+                        if ($row[1]==2){
+                            echo '<a href="updatePolice.php?user_id='.$_GET["user_id"].
+                            '&prot_id='.$_GET["prot_id"].'">';
+                            echo '<button type="button" class="btn btn-join" id="joinbtn">Permission Protest</button>';
+                            echo "</a";
+                        }
+                        elseif ($prot_row[8]==$_GET["user_id"]){
                             echo '<a href="updateProtest.php?user_id='.$_GET["user_id"].
                             '&prot_id='.$_GET["prot_id"].'">';
                             echo '<button type="button" class="btn btn-join" id="joinbtn">Manage Protest</button>';
