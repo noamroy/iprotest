@@ -119,7 +119,6 @@
                 </section>
                 <section>
                     <button type="button" class="btn btn-join" id="joinbtn">Join Protest</button>
-                    <button type="button" class="btn btn-join" id="joinbtn">Leave Protest</button>
                 </section>
                 <section>
                     <?php
