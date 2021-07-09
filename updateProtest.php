@@ -52,7 +52,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
         <script src="js/scripts.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/style2.css"/>
         <title>updateProtest</title>
     </head>
     <body id="createProtest">
@@ -172,11 +172,9 @@
             menu();
         </script>
     <footer>
-        
     </footer>
 </body> 
 </html>
-
 <?php
     //close DB connection
     mysqli_close($connection);
