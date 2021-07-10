@@ -21,7 +21,7 @@
         .$_POST["prot_share_4"]."');";
         $result = mysqli_query($connection , $query);
         if ($result){
-          header ('location: '.LOCAL_URL.'iprotest/protestList.php?user_id='.$_POST["prot_owner"].'&page=3');   //SUBMIT FIX
+          header ('location: '.LOCAL_URL.'protestList.php?user_id='.$_POST["prot_owner"].'&page=3');   //SUBMIT FIX
         }
     }
     if(!empty($_GET["user_id"])) {
@@ -55,7 +55,7 @@
                 <div class="dropdown">
                     <div id="myDropdown" class="dropdown-content">
                     <?php
-                            echo '<a href="#">Profile</a>';
+                            echo '<a href="profile.php?user_id='.$row[0].'>Profile</a>';
                             echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
                             echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
                             echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
@@ -139,6 +139,7 @@
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
                         <?php 
                             echo '<a href="protestList.php?user_id='.$_GET["user_id"].'&page=3"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';
+                            echo '<a href="createprotestfromjson.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-primary" id="returnbtn"> Json </buttom></a>';
                         ?>
                     </div>
                 </form>

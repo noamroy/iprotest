@@ -1,34 +1,12 @@
 <?php
     include 'db.php';
-    include "config.php";   
-    if(!empty($_POST["prot_status"])){
-        echo "<h1>".$_POST["prot_status"]."</h1>";
-        if ($_POST["prot_status"] == "Approved"){
-            $stat = 1;
-        }
-        elseif ($_POST["prot_status"] == "Deny"){
-            $stat = 0;
-        }
-        elseif ($_POST["prot_status"] == "reapproved"){
-            $stat = 3;
-        }
-        $query ="UPDATE tbl_87_protests SET 
-        prot_police='".$_POST["prot_police"]."', 
-        prot_status=".$stat.
-        " WHERE prot_id=".$_GET["prot_id"].";"; 
-        echo "<h1>".$query."</h1>";
-        $result = mysqli_query($connection , $query);
-        if ($result){
-          header ('location: '.LOCAL_URL.'protestList.php?user_id='.$_GET["user_id"].'&page=4');//SUBMIT FIX          
-        }
-    }
-    if(!empty($_GET["user_id"])||!empty($_GET["prot_id"])) {
+    include "config.php";
+    if(!empty($_GET["user_id"])) {
         $query ="SELECT * FROM tbl_87_users WHERE user_id=".$_GET["user_id"].";";
         $result = mysqli_query($connection , $query);
         $row = mysqli_fetch_array($result);
-        $query ="SELECT * FROM tbl_87_protests WHERE prot_id=".$_GET["prot_id"].";";
-        $result = mysqli_query($connection , $query);
-        $prot_row = mysqli_fetch_array($result);
+        $strJsonFileContents = file_get_contents("protest1.json");
+        $array = json_decode($strJsonFileContents, true);
     }
     else{
         $message = "FORBIDDEN PLACE";
@@ -46,7 +24,7 @@
         <script src="js/scripts.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style2.css"/>
-        <title>updateProtest</title>
+        <title>jsonProtest</title>
     </head>
     <body id="createProtest">
         <?php if (!empty($message)) {echo $message;} ?>
@@ -74,68 +52,75 @@
                 </a>
             </header>
             <main id="test"> <!-- FIX -->
-                <h1>Update Protest</h1>
+                <h1>Create Protest</h1>
                 <?php
-                    echo '<form name="updateProtest" action="updatePolice.php?user_id='.$row[0].'&prot_id='.$prot_row[0].'" method="POST" autocomplete="on">';
+                    echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';
                 ?>
                     <div class="mb-3 form-group">
                         <label class="form-label"> 
                             <?php
-                                echo'<input type="text" class="form-control" name="prot_name" value="'.$prot_row[1].'" disabled>';
+                                echo'<input type="text" class="form-control" name="prot_name" value="'.($array["protest"]["name"]).'" require>';
                             ?>
                         </label>
                     </div>
                     <?php
-                        echo '<input type="text" name="prot_police" value="'.$prot_row[6].'">';
+                        echo '<input type="hidden" name="prot_owner" value='.$_GET["user_id"].'>';
                     ?>
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
-                                echo'<input type="text" class="form-control" name="prot_address" value="'.$prot_row[2].'" disabled>';
+                                echo'<input type="text" class="form-control" name="prot_address" value="'.($array["protest"]["address"]).'" require>';
                             ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
-                                $time = new DateTime($prot_row[3]);
-                                $date = $time->format('Y-m-d');
                                 $dts = new DateTime();
                                 $dts = $dts->format('Y-m-d');
-                                echo'<input type="date" class="form-control" name="prot_date" value="'.$date.'" min="'.$dts.'" disabled>';
+                                echo'<input type="date" class="form-control" name="prot_date" value="'.($array["protest"]["date"]).'" min="'.$dts.'" require>';
                             ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
-                                $time = $time->format('H:i');
-                                echo'<input type="time" class="form-control" name="prot_time" value="'.$time.'" disabled>';
+                                echo'<input type="time" class="form-control" name="prot_time" value="'.($array["protest"]["time"]).'" require>';
                             ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
-                                echo'<input type="text" class="form-control" name="prot_cause" value="'.$prot_row[4].'" disabled>';
+                                echo'<input type="text" class="form-control" name="prot_cause" value="'.($array["protest"]["cause"]).'" >';
                             ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
-                                echo'<textarea name="notes" class="form-control" rows="4" disabled>'.$prot_row[5].'</textarea>';
+                                echo'<textarea name="notes" class="form-control" rows="4">'.($array["protest"]["notes"]).'</textarea>';
                             ?>
                         </label>
                     </div>
-                    <div class="mb-3 form-group required">
-                        <label><b>Permission: </b>&nbsp;</label>              
-                        <input type="radio" name="prot_status" value="Approved">
-                        <label for="user">Approved&nbsp;</label>
-                        <input type="radio" name="prot_status" value="Deny">
-                        <label for="user">Deny</label>
-                        <input type="radio" name="prot_status" value="reapproved" checked>
-                        <label for="user">Fix</label>
+                    <h2> Share on: </h2>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <img src="images/facebook-icon.png">
+                            <input class="form-check-input" type="checkbox" name="prot_share_1" value="facebook">
+                        </label>
+                        <label class="form-check-label">
+                            <img src="images/whatsapp-icon.png">
+                            <input class="form-check-input" type="checkbox" name="prot_share_2" value="whats_up">
+                        </label>
+                        <label class="form-check-label"> 
+                            <img src="images/twitter-icon.png">
+                            <input class="form-check-input" type="checkbox" name="prot_share_3" value="twitter">
+                        </label>
+                        <label class="form-check-label"> 
+                            <img src="images/mail-icon.png">
+                            <input class="form-check-input" type="checkbox" name="prot_share_4" value="mail">
+                        </label><br>
                     </div>
                     <div class="buttomsFlexContainer">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">

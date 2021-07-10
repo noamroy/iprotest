@@ -57,7 +57,7 @@
                 <div class="dropdown">
                     <div id="myDropdown" class="dropdown-content">
                     <?php
-                            echo '<a href="#">Profile</a>';
+                            echo '<a href="profile.php?user_id='.$row[0].'>Profile</a>';
                             echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
                             echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
                             echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';

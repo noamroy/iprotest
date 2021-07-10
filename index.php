@@ -7,7 +7,6 @@
         ."' and user_pass='"
         .$_POST["loginPass"]
         ."';";
-      echo $query; // can't start echo if header comer after it
       $result = mysqli_query($connection , $query);
       $row = mysqli_fetch_array($result); 
       if(is_array($row)) {
