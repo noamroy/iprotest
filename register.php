@@ -31,7 +31,7 @@
         $result = mysqli_query($connection , $query);
         if ($result){
           //$message = 'success';
-          header ('location: http://localhost/iprotest/index.php');
+          header ('location: '.LOCAL_URL.'index.php');  //SUBMIT FIX
         }
       }
     }
@@ -64,7 +64,7 @@
               <label for="user">user&nbsp;</label>
               <input type="radio" name="loginType" value="government">
               <label for="user">government</label>
-    
+              </div>
             <div class="mb-3">
               <label for="loginName"></label>
               <input type="text" class="form-control" name="loginName" id="loginName" placeholder="Enter Name" require/>
@@ -97,11 +97,10 @@
             <button type="submit" class="btn btn-primary">Register</button>
             <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div>  
             </div>  
-          </form>
-          <br>
-          <p>
+          <p>         
           <a href="index.php">Have an Account? Login Now!</a>
           </p>
+          </form>
           </div>
         </div>
         </section>

@@ -1,2 +1,3 @@
-<?
-define ("URL", "http://localhost/iprotest/");
+<?php
+define ("LOCAL_URL", "http://localhost/iprotest/");
+?> 

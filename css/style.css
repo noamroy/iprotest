@@ -16,6 +16,7 @@ body{
 }
 .wrapper{
     margin: 0 auto;
+    width: 100%;
 }
 .debugger{
     background-color: purple;
@@ -24,7 +25,7 @@ body{
 .flexContainer{
     display: flex;
     align-items: center;
-    min-width: max-content;
+    /*min-width: max-content;*/
 }
 a{
     text-decoration: none;
@@ -66,7 +67,7 @@ header>h4 {
     margin-top: 20px;
     display: block;
     margin-left: auto;
-    margin-right: 20em;
+    margin-right: 48em;
 }
 #home{
     width: 50px;
@@ -94,7 +95,6 @@ main>h1{
 /*~~~~~~~~~~~ Home Page ~~~~~~~~~~~~*/
 .container{
     width: 500px;
-    height: 305px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -122,17 +122,19 @@ main>h1{
     padding: 10px;
     height: 40px;
     width: 40px;
-    position: absolute;
-    margin-top: -65px;
-    margin-left: 10px;
+    display: flex;
+    margin-bottom: 15px;
+    margin-left: 20px;
 }
-
+#manageprotest a{
+    display: block;
+}
 /*~~~~~~~~~~~ Protest Page ~~~~~~~~~*/
 #protestPage header>a{
     margin-top:7px;
 }
 #protestPage p{
-    font-size: 14px;
+    font-size: 20px;
     padding-bottom: 20px;
 }
 button:hover{
@@ -148,7 +150,7 @@ section.details>section{
     height: 30px;
     width: 320px;
     margin-bottom: 20px;
-    font-size: 14px;
+    font-size: 20px;
     margin-left: 100px;
     display: flex;
     
@@ -182,7 +184,7 @@ section.details>section>img{
     height: 50px;
     margin-bottom: 30px;
     font-size: 14px;
-    margin-left: 90px;
+    margin-left: 120px;
 }
 #joinnbt{
     background-color: red;
@@ -258,8 +260,12 @@ table{
 thead{
     background-color: orange;
 }
-tbody>tr:hover{
-    background-color: gray;
+
+#manageProtest a{
+color: black;
+}
+#manageProtest a:hover{
+    color: green;
 }
 /*************menu**********************/
 .dropbtn {
@@ -308,50 +314,41 @@ tbody>tr:hover{
     text-align: center;
     
 }
- 
-#login p>a{
- color: black;
- margin-left: 40px;
+#login button{
+    justify-content: center;
+    align-content: space-between;
+}
+#loginbtn{
+    margin-left:70px;
+    margin-bottom: 10px;
 }
 #joinbt{
     background-color: red;
 }
+.error-message{
+    color: red;
+    margin-left: 15px;
+}
+#login a{
+    color:black;
+    margin-left: 40px;
+    letter-spacing: 1px;
+}
+#login a:hover{
+    color:goldenrod;
+}
 
-/*responsiv*/
-  @media (max-width: 1200px){
-      footer{
-            width: 100%;
-            bottom: 0%;
-        }      
-      .wrapper{
-          margin: 0 auto;
-          width: 100%;
-          height: 1000px;
-          margin: 0 auto;
-          justify-content: center;
-      }
-      header{
-          height: 100px;
-      }
-      #logo{
-        width: 133px;
-        height: 50px;
-        background-repeat: no-repeat;
-        margin-top: 20px;
-
-    }
-  }
-  @media (max-width: 991px){
-    main{
-        height: 100%;
-    }
-  }
   @media (min-width: 768px) and (max-width: 990px) {
     #protestPage p{
         font-size: 25px;
     }
+    #logo{
+        width: 120px;
+
+    }
     main>h1{
         font-size: 40px;
+        margin-left: 20px;
     }
     section.details>section{
         font-size: 22px;
@@ -371,7 +368,16 @@ tbody>tr:hover{
   @media (max-width: 768px) {
     main{
         height: 100%;
+        
     }
+    header{
+        width: 100%;
+    }
+    #logo{
+        width: 120px;
+        margin-left: 15em;
+    }
+
     #joinbtn{
         width: 80%;
         margin-left: 50px;
@@ -387,6 +393,7 @@ tbody>tr:hover{
   @media (max-width: 500px) {
     #logo{
         width: 120px;
+        margin-left: 5em;
 
     }
     #home {
@@ -402,6 +409,7 @@ tbody>tr:hover{
         }
         main>h1{
             font-size: 20px;
+            margin-left: 50px;
         }
         .container>section{
   
@@ -419,5 +427,8 @@ tbody>tr:hover{
         }
         section.details>section{
             margin-left: inherit;
+        }
+        main{
+            height: 0%;
         }
   }

@@ -1,16 +1,14 @@
 <?php
     include 'db.php';
     include "config.php";
-    if(!empty($_GET["user_id"])||!empty($_GET["page"])) { //true if form was submitted
+    if(!empty($_GET["user_id"])||!empty($_GET["page"])) {
       $query ="SELECT * FROM tbl_87_users WHERE user_id='"
         .$_GET["user_id"]
         ."';";
-      echo $query; // can't start echo if header comer after it
       $page = $_GET["page"];
       $result = mysqli_query($connection , $query);
       $row = mysqli_fetch_array($result);
       if(is_array($row)) {
-        //$message = 'success';
       } else {
         $message = "FORBIDDEN PLACE";
       }
@@ -18,18 +16,27 @@
     else{
         $message = "FORBIDDEN PLACE";
     }
+    if(!empty($_GET["event_counter"])){
+        $counter = $_GET["event_counter"];
+    }
+    else{
+        $counter = 10;
+    }
+    $query ="UPDATE tbl_87_protests SET prot_status=2 WHERE prot_time < CURRENT_TIMESTAMP;";
+    $result = mysqli_query($connection , $query);
+
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8"> 
+    <meta charset="UTF-8"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">    
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="css/style.css"/>
         <script src="js/scripts.js"></script>
         <?php
             echo "<title>";
@@ -41,10 +48,8 @@
                 echo "manageProtests";
             echo "</title>";
         ?>
-
     </head>
     <body id="manageProtest">
-        <div class="wrapper">
             <header class="flexContainer">
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
@@ -67,6 +72,7 @@
                     <section id="logo"></section>
                 </a>
             </header>
+            <div class="wrapper">
             <main>
                 <?php
                     echo "<h1>";
@@ -78,32 +84,29 @@
                         echo "Manage Protests";
                     echo "</h1>";
                 ?>
-                <?php
-                    if ($page == 3){
-                        echo '<a href="createProtest.php?user_id='.$row[0].'">';
-                        echo '<img src="images/add_icon.png" id="add_icon" title="add" alt="add">';
-                        echo '</a>';
-                    }
-                ?>
+               
                 <section id="chart" class="table">
                 <?php
-                    if ($page == 1){
+                    if ($page == 1 && $row[1] == 1){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
                         WHERE prot_id=(SELECT prot_id FROM tbl_87_connect WHERE user_id=".$_GET['user_id'].") 
                         AND prot_status=1 "."
-                        LIMIT 10;";
+                        LIMIT ".$counter.";";
                     }
-                    elseif ($page == 2){
+                    elseif ($page == 2 || ($page == 1 && $row[1] == 2)){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
-                        WHERE prot_status=1 LIMIT 10;";
+                        WHERE prot_status=1 LIMIT ".$counter.";";
                     }
                     elseif ($page == 3){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
                         WHERE prot_owner=".$_GET["user_id"]."
                         AND prot_status!=2
-                        LIMIT 10;";
-                    }                    
-                    //echo $query; // can't start echo if header comer after it
+                        LIMIT ".$counter.";";
+                    }
+                    elseif ($page == 4){
+                        $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
+                        WHERE prot_status=3 LIMIT ".$counter.";";
+                    }                  
                     $result = mysqli_query($connection , $query);
                     if (!empty($result)){
                         $n = $result->num_rows;            
@@ -112,6 +115,13 @@
                         $n = 0;
                     }
                     ?>
+                     <?php
+                    if ($page == 3){
+                        echo '<a href="createProtest.php?user_id='.$row[0].'">';
+                        echo '<img src="images/add_icon.png" id="add_icon" title="add" alt="add">';
+                        echo '</a>';
+                    }
+                ?>
                     <table class='table table-striped'>
                         <thead> 
                             <tr>
@@ -141,17 +151,22 @@
                                         elseif ($row[4] == 0)
                                             echo "Decline";
                                         echo "</td>";
-                                    echo "</tr>"; 
-                    }
-                    echo "</tbody>";
-                    echo "</table>";
-                ?>
+                                    echo "</tr>";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                    <?php
+                        $counter = $counter+10;
+                        if($n==$counter){
+                            echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=".$page."&event_counter=".$counter."'><button type='button'>More protests</button></a>";
+                        }
+                    ?>
                 </section>
             </main>
             <footer></footer>
         </div>
         <script>
-        //createManageTable();
         menu();
         </script>
     </body>
