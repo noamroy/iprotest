@@ -21,7 +21,7 @@
         .$_POST["prot_share_4"]."');";
         $result = mysqli_query($connection , $query);
         if ($result){
-          header ('location: '.LOCAL_URL.'protestList.php?user_id='.$_POST["prot_owner"].'&page=3');   //SUBMIT FIX
+          header ('location: '.HAGASHA_URL.'protestList.php?user_id='.$_POST["prot_owner"].'&page=3');
         }
     }
     if(!empty($_GET["user_id"])) {
@@ -49,44 +49,34 @@
     </head>
     <body id="createProtest">
         <?php if (!empty($message)) {echo $message;} ?>
-       
             <header class="flexContainer">
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
                     <div id="myDropdown" class="dropdown-content">
-                    <?php
-                            echo '<a href="profile.php?user_id='.$row[0].'>Profile</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
-                            echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
+                        <?php
+                        echo '<a href="profile.php?user_id='.$row[0].'">Profile</a>';
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
+                        echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
                         ?>
-                            <a href="index.php">Log out</a>
+                        <a href="index.php">Log out</a>
                     </div>
                 </div>
-                <?php
-                    echo "<h4>HI, ".$row[2]."</h4>";
-                ?>
-                <?php
-                    echo '<a href="homepage.php?user_id='.$row[0].'">';
-                ?>
+                <?php echo "<h4>HI, ".$row[2]."</h4>";?>
+                <?php echo '<a href="homepage.php?user_id='.$row[0].'">';?>
                     <section id="logo"></section>
                 </a>
             </header>
             <div class="wrapper">
-            <main > 
-                <h1>Create Protest</h1>
-                <?php
-                echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';
-                ?>
-                
+                <main> 
+                    <h1>Create Protest</h1>
+                    <?php echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';?>
                     <div class="mb-3 form-group">
                         <label class="form-label"> 
                             <input type="text" class="form-control" name="prot_name" placeholder="Protest Name" require>
                         </label>
                     </div>
-                    <?php
-                        echo '<input type="hidden" name="prot_owner" value='.$row[0].'>';
-                    ?>
+                    <?php echo '<input type="hidden" name="prot_owner" value='.$row[0].'>';?>
                     <div class="mb-3">
                         <label class="form-label">
                             <input type="text" class="form-control" name="prot_address" placeholder="Address" require>
@@ -95,9 +85,9 @@
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
-                                $dts = new DateTime();
-                                $dts = $dts->format('Y-m-d');
-                                echo'<input type="date" class="form-control" name="prot_date" placeholder="Date" min="'.$dts.'" require>';
+                            $dts = new DateTime();
+                            $dts = $dts->format('Y-m-d');
+                            echo'<input type="date" class="form-control" name="prot_date" placeholder="Date" min="'.$dts.'" require>';
                             ?>
                         </label>
                     </div>
@@ -138,8 +128,8 @@
                     <div class="buttomsFlexContainer">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
                         <?php 
-                            echo '<a href="protestList.php?user_id='.$_GET["user_id"].'&page=3"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';
-                            echo '<a href="createprotestfromjson.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-primary" id="returnbtn"> Json </buttom></a>';
+                        echo '<a href="protestList.php?user_id='.$_GET["user_id"].'&page=3"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';
+                        echo '<a href="createprotestfromjson.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-primary" id="returnbtn"> Json </buttom></a>';
                         ?>
                     </div>
                 </form>
@@ -147,12 +137,10 @@
         <script>
             menu();
         </script>
-    <footer>
-        
-    </footer>
-</body> 
+        <footer>
+        </footer>
+    </body> 
 </html>
-
 <?php
     mysqli_close($connection);
 ?>

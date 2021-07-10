@@ -33,55 +33,45 @@
         <title>homePage</title>
     </head>
     <body id="homePage">
-            <header class="flexContainer">
+        <header class="flexContainer">
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
                     <div id="myDropdown" class="dropdown-content">
                         <?php
-                            echo '<a href="profile.php?user_id='.$row[0].'">Profile</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
-                            echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
+                        echo '<a href="profile.php?user_id='.$row[0].'">Profile</a>';
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
+                        echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
                         ?>
-                            <a href="index.php">Log out</a>
+                        <a href="index.php">Log out</a>
                     </div>
                 </div>
-                <?php
-                    echo "<h4>HI, ".$row[2]."</h4>";
-                ?>
-                <?php
-                    echo '<a href="homepage.php?user_id='.$row[0].'">';
-                ?>
+                <?php echo "<h4>HI, ".$row[2]."</h4>";?>
+                <?php echo '<a href="homepage.php?user_id='.$row[0].'">';?>
                     <section id="logo"></section>
                 </a>
             </header>
             <div class="wrapper">
-            <main>
-                <?php
-                    echo "<h1>HI, ".$row[2]."</h1>";
-                ?>
-                <section class="container">
-                    <section>
-                        <a href="">
-                            <h2>Navigate to protest</h2>
-                        </a>
-                    </section>
-                    <section>
-                        <?php
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">';
-                        ?>
-                            <h2 >My Upcoming protests</h2>
-                        </a>
-                    </section>
-                    <section>
-                        <?php
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">';
-                        ?>
-                            <h2>Search protest</h2>
-                        </a>
-                    </section>
-                    <section>
-                        <?php
+                <main>
+                    <?php echo "<h1>HI, ".$row[2]."</h1>";?>
+                    <section class="container">
+                        <section>
+                            <a href="">
+                                <h2>Navigate to protest</h2>
+                            </a>
+                        </section>
+                        <section>
+                            <?php echo '<a href="protestList.php?user_id='.$row[0].'&page=1">';?>
+                                <h2 >My Upcoming protests</h2>
+                            </a>
+                        </section>
+                        <section>
+                            <?php echo '<a href="protestList.php?user_id='.$row[0].'&page=2">';?>
+                                <h2>Search protest</h2>
+                            </a>
+                        </section>
+                        <section>
+                            <?php
                             if ($row[1]==1){
                                 echo '<a href="protestList.php?user_id='.$row[0].'&page=3">';
                                 echo"<h2>Manage protests</h2>";
@@ -90,13 +80,13 @@
                                 echo '<a href="protestList.php?user_id='.$row[0].'&page=4">';
                                 echo"<h2>Waiting to approve protests</h2>";
                             }
-                        ?>
-                        </a>
+                            ?>
+                            </a>
+                        </section>
                     </section>
-                </section>
-            </main>
+                </main>
+            </div>
             <footer></footer>
-        </div>
         <script>
             menu();
         </script>

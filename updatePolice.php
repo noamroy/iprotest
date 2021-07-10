@@ -19,7 +19,7 @@
         echo "<h1>".$query."</h1>";
         $result = mysqli_query($connection , $query);
         if ($result){
-          header ('location: '.LOCAL_URL.'protestList.php?user_id='.$_GET["user_id"].'&page=4');//SUBMIT FIX          
+          header ('location: '.HAGASHA_URL.'protestList.php?user_id='.$_GET["user_id"].'&page=4');          
         }
     }
     if(!empty($_GET["user_id"])||!empty($_GET["prot_id"])) {
@@ -50,53 +50,41 @@
     </head>
     <body id="updatepolice">
         <?php if (!empty($message)) {echo $message;} ?>
-            <header class="flexContainer">
-                <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
-                <div class="dropdown">
-                    <div id="myDropdown" class="dropdown-content">
+        <header class="flexContainer">
+            <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
+            <div class="dropdown">
+                <div id="myDropdown" class="dropdown-content">
                     <?php
-                            echo '<a href="profile.php?user_id='.$row[0].'>Profile</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
-                            echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
-                        ?>
-                            <a href="index.php">Log out</a>
-                    </div>
+                    echo '<a href="profile.php?user_id='.$row[0].'">Profile</a>';
+                    echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
+                    echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
+                    echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
+                    ?>
+                    <a href="index.php">Log out</a>
                 </div>
-                <?php
-                    echo "<h4>HI, ".$row[2]."</h4>";
-                ?>
-                <?php
-                    echo '<a href="homepage.php?user_id='.$row[0].'">';
-                ?>
-                    <section id="logo"></section>
-                </a>
-            </header>
-            <div class="wrapper">
+            </div>
+            <?php echo "<h4>HI, ".$row[2]."</h4>";?>
+            <?php echo '<a href="homepage.php?user_id='.$row[0].'">';?>
+                <section id="logo"></section>
+            </a>
+        </header>
+        <div class="wrapper">
             <main>
                 <h1>Update Protest</h1>
-                <?php
-                    echo '<form name="updateProtest" action="updatePolice.php?user_id='.$row[0].'&prot_id='.$prot_row[0].'" method="POST" autocomplete="on">';
-                ?>
+                <?php echo '<form name="updateProtest" action="updatePolice.php?user_id='.$row[0].'&prot_id='.$prot_row[0].'" method="POST" autocomplete="on">';?>
                     <div class="mb-3 form-group">
-                        <label class="form-label"> 
-                            <?php
-                                echo'<input type="text" class="form-control" name="prot_name" value="'.$prot_row[1].'" disabled>';
-                            ?>
+                        <label class="form-label"> name
+                            <?php echo'<input type="text" class="form-control" name="prot_name" value="'.$prot_row[1].'" disabled>';?>
                         </label>
                     </div>
                     <div class="mb-3">
-                    <label class="form-label">
-                    <?php
-                        echo '<input type="text"  class="form-control" name="prot_police" value="'.$prot_row[6].'">';
-                    ?>
-                    </label>
+                        <label class="form-label"> police notes- PLEASE FILL
+                            <?php echo '<input type="text"  class="form-control" name="prot_police" value="'.$prot_row[6].'">';?>
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">
-                            <?php
-                                echo'<input type="text" class="form-control" name="prot_address" value="'.$prot_row[2].'" disabled>';
-                            ?>
+                        <label class="form-label"> address
+                            <?php echo'<input type="text" class="form-control" name="prot_address" value="'.$prot_row[2].'" disabled>';?>
                         </label>
                     </div>
                     <div class="mb-3">
@@ -119,17 +107,13 @@
                         </label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">
-                            <?php
-                                echo'<input type="text" class="form-control" name="prot_cause" value="'.$prot_row[4].'" disabled>';
-                            ?>
+                        <label class="form-label"> cause
+                            <?php echo'<input type="text" class="form-control" name="prot_cause" value="'.$prot_row[4].'" disabled>';?>
                         </label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">
-                            <?php
-                                echo'<textarea name="notes" class="form-control" rows="4" disabled>'.$prot_row[5].'</textarea>';
-                            ?>
+                        <label class="form-label"> notes
+                            <?php echo'<textarea name="notes" class="form-control" rows="4" disabled>'.$prot_row[5].'</textarea>';?>
                         </label>
                     </div>
                     <div class="mb-3 form-group required">
@@ -140,18 +124,17 @@
                     </div>
                     <div class="buttomsFlexContainer">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
-                        <?php 
-                            echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=3'><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";
-                        ?>
+                        <?php echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=3'><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";?>
                     </div>
                 </form>
             </main>
-        <script>
-            menu();
-        </script>
-    <footer>
-    </footer>
-</body> 
+            <script>
+                menu();
+            </script>
+            <footer>
+            </footer>
+        </div>
+    </body> 
 </html>
 <?php
     mysqli_close($connection);

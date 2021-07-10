@@ -33,74 +33,56 @@
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
                     <div id="myDropdown" class="dropdown-content">
-                    <?php
-                            echo '<a href="profile.php?user_id='.$row[0].'>Profile</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
-                            echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
-                            echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
+                        <?php
+                        echo '<a href="profile.php?user_id='.$row[0].'">Profile</a>';
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=1">My Upcoming protests</a>';
+                        echo '<a href="createProtest.php?user_id='.$row[0].'">Create Protest</a>';
+                        echo '<a href="protestList.php?user_id='.$row[0].'&page=2">Search protest</a>';
                         ?>
-                            <a href="index.php">Log out</a>
+                        <a href="index.php">Log out</a>
                     </div>
                 </div>
-                <?php
-                    echo "<h4>HI, ".$row[2]."</h4>";
-                ?>
-                <?php
-                    echo '<a href="homepage.php?user_id='.$row[0].'">';
-                ?>
+                <?php echo "<h4>HI, ".$row[2]."</h4>";?>
+                <?php echo '<a href="homepage.php?user_id='.$row[0].'">';?>
                     <section id="logo"></section>
                 </a>
             </header>
             <main id="test"> <!-- FIX -->
                 <h1>Create Protest</h1>
-                <?php
-                    echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';
-                ?>
+                <?php echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';?>
                     <div class="mb-3 form-group">
                         <label class="form-label"> 
-                            <?php
-                                echo'<input type="text" class="form-control" name="prot_name" value="'.($array["protest"]["name"]).'" require>';
-                            ?>
+                            <?php echo'<input type="text" class="form-control" name="prot_name" value="'.($array["protest"]["name"]).'" require>';?>
                         </label>
                     </div>
-                    <?php
-                        echo '<input type="hidden" name="prot_owner" value='.$_GET["user_id"].'>';
-                    ?>
+                    <?php echo '<input type="hidden" name="prot_owner" value='.$_GET["user_id"].'>';?>
                     <div class="mb-3">
                         <label class="form-label">
-                            <?php
-                                echo'<input type="text" class="form-control" name="prot_address" value="'.($array["protest"]["address"]).'" require>';
-                            ?>
+                            <?php echo'<input type="text" class="form-control" name="prot_address" value="'.($array["protest"]["address"]).'" require>';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
-                                $dts = new DateTime();
-                                $dts = $dts->format('Y-m-d');
-                                echo'<input type="date" class="form-control" name="prot_date" value="'.($array["protest"]["date"]).'" min="'.$dts.'" require>';
+                            $dts = new DateTime();
+                            $dts = $dts->format('Y-m-d');
+                            echo'<input type="date" class="form-control" name="prot_date" value="'.($array["protest"]["date"]).'" min="'.$dts.'" require>';
                             ?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
-                            <?php
-                                echo'<input type="time" class="form-control" name="prot_time" value="'.($array["protest"]["time"]).'" require>';
-                            ?>
+                            <?php echo'<input type="time" class="form-control" name="prot_time" value="'.($array["protest"]["time"]).'" require>';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
-                            <?php
-                                echo'<input type="text" class="form-control" name="prot_cause" value="'.($array["protest"]["cause"]).'" >';
-                            ?>
+                            <?php echo'<input type="text" class="form-control" name="prot_cause" value="'.($array["protest"]["cause"]).'" >';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">
-                            <?php
-                                echo'<textarea name="notes" class="form-control" rows="4">'.($array["protest"]["notes"]).'</textarea>';
-                            ?>
+                            <?php echo'<textarea name="notes" class="form-control" rows="4">'.($array["protest"]["notes"]).'</textarea>';?>
                         </label>
                     </div>
                     <h2> Share on: </h2>
@@ -124,9 +106,7 @@
                     </div>
                     <div class="buttomsFlexContainer">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
-                        <?php 
-                            echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=3'><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";
-                        ?>
+                        <?php echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=3'><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";?>
                     </div>
                 </form>
             </main>
