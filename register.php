@@ -30,7 +30,6 @@
         .$_POST["loginMail"]."');";
         $result = mysqli_query($connection , $query);
         if ($result){
-          //$message = 'success';
           header ('location: '.LOCAL_URL.'index.php');  //SUBMIT FIX
         }
       }
@@ -64,7 +63,7 @@
               <label for="user">user&nbsp;</label>
               <input type="radio" name="loginType" value="government">
               <label for="user">government</label>
-              </div>
+            </div>
             <div class="mb-3">
               <label for="loginName"></label>
               <input type="text" class="form-control" name="loginName" id="loginName" placeholder="Enter Name" require/>
