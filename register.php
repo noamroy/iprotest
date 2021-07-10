@@ -49,7 +49,7 @@
         <link rel="stylesheet" href="css/style.css"/>
         <title>Register</title>
     </head>
-  <body id = "login">
+  <body id = "register">
       <header class="flexContainer">
         <section id="logo"></section>
       </header>

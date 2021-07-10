@@ -73,7 +73,7 @@
                 </a>
             </header>
             <div class="wrapper">
-            <main id="test"> <!-- FIX -->
+            <main > 
                 <h1>Create Protest</h1>
                 <?php
                 echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';

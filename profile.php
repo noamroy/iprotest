@@ -34,19 +34,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8"> 
+    <meta charset="UTF-8"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
         <script src="js/scripts.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style2.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
         <title>updateProfile</title>
     </head>
-    <body id="createProtest">
+    <body id="profile">
         <?php if (!empty($message)) {echo $message;} ?>
-        <div class="wrapper">
             <header class="flexContainer">
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
@@ -69,58 +68,66 @@
                     <section id="logo"></section>
                 </a>
             </header>
+            <div class="wrapper">
             <main>
                 <h1>Profile</h1>
                 <form action="#" method="post" id="frm">
                     <?php 
                         echo '<input type="hidden" name="user_id" value='.$row[0].'>';
                     ?>
-                    <div class="mb-3">
-                        <label for="loginName">Name</label>
+                    <div class="mb-3 form-group">
+                        <label for="loginName">Name
                         <?php
                             echo '<input type="text" class="form-control" name="user_name" id="loginName" value="'.$row[2].'" disabled/>';
                         ?>
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <label for="loginPass">Pass</label>
+                        <label for="loginPass">Pass
                         <?php
                             echo '<input type="password" class="form-control" name="user_pass" id="loginPass" value="'.$row[3].'" require/>';
                         ?>
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <label for="loginAddress">Address</label>
+                        <label for="loginAddress">Address
                         <?php
                             echo '<input type="text" class="form-control" name="user_address" id="loginAddress" value="'.$row[4].'"/>';
                         ?>
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <label for="loginPhone">Phone</label>
+                        <label for="loginPhone">Phone
                         <?php
                             echo '<input type="tel" class="form-control" name="user_phone" id="loginPhone" value="'.$row[5].'"/>';
                         ?>
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <label for="loginFacebook">Facebook</label>
+                        <label for="loginFacebook">Facebook
                         <?php
                             echo '<input type="text" class="form-control" name="user_facebook" id="loginFacebook" value="'.$row[6].'"/>';
                         ?>
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <label for="loginTwitter">Twitter</label>
+                        <label for="loginTwitter">Twitter
                     <?php
                         echo '<input type="text" class="form-control" name="user_twitter" id="loginTwitter" value="'.$row[7].'"/>';
                     ?>
                     </div>
+                    </label>
                     <div class="mb-3">
-                        <label for="loginMail">Mail</label>
+                        <label for="loginMail">Mail
                         <?php
                             echo '<input type="email" class="form-control" name="user_mail" id="loginMail" value="'.$row[8].'"/>';
                         ?>
+                        </label>
                     </div>
                     <div class="buttomsFlexContainer">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary" id="submitbtn" type="submit">Update</button>
                         <?php 
-                            echo "<a href='homepage.php?user_id=".$_GET["user_id"]."><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";
+                            echo '<a href="homepage.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';
                         ?>
                     </div>
                 </form>

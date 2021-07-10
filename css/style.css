@@ -67,7 +67,7 @@ header>h4 {
     margin-top: 20px;
     display: block;
     margin-left: auto;
-    margin-right: 48em;
+    margin-right: 36em;
 }
 #home{
     width: 50px;
@@ -238,14 +238,13 @@ div.buttomsFlexContainer{
     width: 150px;
     background-color: green;
     border-width: 0;
-    margin-right: 10%;
 }
 #returnbtn{
     width: 150px;
     background-color: red;
     border-width: 0;
 }
-#test{
+#updateprotest{
     justify-content: center;
 }
 /*****************list**************/
@@ -304,7 +303,6 @@ color: black;
   .show {display: block;}
  /*register*/
  #login form {
-    margin: auto;
     display: block;
     margin-top: 20px;
     border-bottom-style: groove;
@@ -331,13 +329,54 @@ color: black;
 }
 #login a{
     color:black;
-    margin-left: 40px;
     letter-spacing: 1px;
+    margin-left: 50px;
 }
 #login a:hover{
     color:goldenrod;
 }
+#login p{
+    position: relative;
+    margin-left: 50px;
+}
 
+#login form{
+    margin: inherit;
+}
+
+#register form{
+    margin: inherit;
+}
+#register form label{
+    display: contents;
+}
+#register a{
+    color: black;
+    margin-left: 30px;
+}
+
+
+/*profile*/
+#profile form{
+    margin:inherit;
+}
+#profile button {
+   padding-left: 10px;
+}
+/*police*/
+#updatepolice form{
+    text-align: inherit;
+    margin: inherit;
+
+}
+
+#updatepolice form label{
+    display: contents;
+}
+#createProtest form{
+    align-items: center;
+    margin: auto;
+}
   @media (min-width: 768px) and (max-width: 990px) {
     #protestPage p{
         font-size: 25px;

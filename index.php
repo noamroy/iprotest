@@ -32,10 +32,10 @@
     <title>Login</title>
   </head>
   <body id = "login">
+  <div class="wrapper">
       <header class="flexContainer">
         <section id="logo"></section>
       </header>
-      <div class="wrapper">
       <main>
         <h1>LOGIN</h1>
         <section class="container">
@@ -48,15 +48,15 @@
               <label for="loginPass">Password: </label>
               <input type="password" class="form-control" name="loginPass" id="loginPass" placeholder="Enter Password" />
             </div>
-            <br>
             <div class="buttomsFlexContainer">
             <button type="submit" class="btn btn-primary" id=Loginbtn>Log Me In</button>
-            <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div> <br>
-            <p>
-          <a href="register.php">Don't have an Account?Register Now!</a>
-          </p>
+            <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div>
           </div>
           </form>
+          <br>
+          <p>
+          <a href="register.php">Don't have an Account?Register Now!</a>
+          </p>
         </section> 
       </main>
       <footer></footer>

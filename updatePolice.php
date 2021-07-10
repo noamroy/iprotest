@@ -38,19 +38,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8"> 
+    <meta charset="UTF-8"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
         <script src="js/scripts.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style2.css"/>
-        <title>updateProtest</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <title>updatepolice</title>
     </head>
-    <body id="createProtest">
+    <body id="updatepolice">
         <?php if (!empty($message)) {echo $message;} ?>
-        <div class="wrapper">
             <header class="flexContainer">
                 <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
                 <div class="dropdown">
@@ -73,7 +72,8 @@
                     <section id="logo"></section>
                 </a>
             </header>
-            <main id="test"> <!-- FIX -->
+            <div class="wrapper">
+            <main>
                 <h1>Update Protest</h1>
                 <?php
                     echo '<form name="updateProtest" action="updatePolice.php?user_id='.$row[0].'&prot_id='.$prot_row[0].'" method="POST" autocomplete="on">';
@@ -85,9 +85,13 @@
                             ?>
                         </label>
                     </div>
+                    <div class="mb-3">
+                    <label class="form-label">
                     <?php
-                        echo '<input type="text" name="prot_police" value="'.$prot_row[6].'">';
+                        echo '<input type="text"  class="form-control" name="prot_police" value="'.$prot_row[6].'">';
                     ?>
+                    </label>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">
                             <?php
@@ -129,13 +133,10 @@
                         </label>
                     </div>
                     <div class="mb-3 form-group required">
-                        <label><b>Permission: </b>&nbsp;</label>              
-                        <input type="radio" name="prot_status" value="Approved">
-                        <label for="user">Approved&nbsp;</label>
-                        <input type="radio" name="prot_status" value="Deny">
-                        <label for="user">Deny</label>
-                        <input type="radio" name="prot_status" value="reapproved" checked>
-                        <label for="user">Fix</label>
+                        <label><b>Permission: </b>&nbsp;<br></label>            
+                        <label> <input type="radio" name="prot_status" value="Approved">Approved</label>
+                        <label for="user"><input type="radio" name="prot_status" value="Deny"> Deny</label>
+                        <label for="user"><input type="radio" name="prot_status" value="reapproved" checked> Fix</label> 
                     </div>
                     <div class="buttomsFlexContainer">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
