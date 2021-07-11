@@ -83,21 +83,21 @@
                     if ($page == 1 && $row[1] == 1){
                         $query ="SELECT p.prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests p
                         INNER JOIN tbl_87_connect c ON p.prot_id=c.prot_id WHERE c.user_id=".$_GET['user_id']."
-                        AND p.prot_status=1 LIMIT ".$counter.";";
+                        AND p.prot_status=1 ORDER BY p.prot_time LIMIT ".$counter.";";
                     }
                     elseif ($page == 2 || ($page == 1 && $row[1] == 2)){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
-                        WHERE prot_status=1 LIMIT ".$counter.";";
+                        WHERE prot_status=1 ORDER BY prot_time LIMIT ".$counter.";";
                     }
                     elseif ($page == 3){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
                         WHERE prot_owner=".$_GET["user_id"]."
                         AND prot_status!=2
-                        LIMIT ".$counter.";";
+                        ORDER BY prot_time LIMIT ".$counter.";";
                     }
                     elseif ($page == 4){
                         $query ="SELECT prot_id,prot_name,prot_address,prot_time,prot_status FROM tbl_87_protests 
-                        WHERE prot_status=3 LIMIT ".$counter.";";
+                        WHERE prot_status=3 ORDER BY prot_time LIMIT ".$counter.";";
                     }                  
                     $result = mysqli_query($connection , $query);
                     if (!empty($result)){
