@@ -25,7 +25,7 @@ body{
 .flexContainer{
     display: flex;
     align-items: center;
-    /*min-width: max-content;*/
+    min-width: fit-content;
 }
 a{
     text-decoration: none;
@@ -244,6 +244,12 @@ div.buttomsFlexContainer{
     background-color: red;
     border-width: 0;
 }
+.btn{
+    width: 150px;
+    background-color:rgb(0, 0, 0);
+    border-width: 0;
+}
+
 #updateprotest{
     justify-content: center;
 }
@@ -354,6 +360,10 @@ color: black;
     color: black;
     margin-left: 30px;
 }
+#register a:hover{
+    color:orange;
+}
+/*jsoncreat*/
 
 
 /*profile*/
@@ -367,9 +377,7 @@ color: black;
 #updatepolice form{
     text-align: inherit;
     margin: inherit;
-
 }
-
 #updatepolice form label{
     display: contents;
 }
@@ -377,13 +385,19 @@ color: black;
     align-items: center;
     margin: auto;
 }
+.share{
+    margin-left: 30px;
+}
+.share h5 {
+    width: 20px;
+}
   @media (min-width: 768px) and (max-width: 990px) {
     #protestPage p{
         font-size: 25px;
     }
     #logo{
         width: 120px;
-
+        margin-left:25%
     }
     main>h1{
         font-size: 40px;
@@ -405,16 +419,12 @@ color: black;
     }
   }
   @media (max-width: 768px) {
-    main{
-        height: 100%;
-        
-    }
     header{
         width: 100%;
     }
     #logo{
-        width: 120px;
-        margin-left: 15em;
+    width: 120px;
+    margin-left: 30%;
     }
 
     #joinbtn{
@@ -422,18 +432,21 @@ color: black;
         margin-left: 50px;
     }
     
-    main>h1{
-        margin-top: revert;
-    }
     .Instructions{
         justify-items: center;
+    }
+    body{
+        width: 100%;
     }
   }
   @media (max-width: 500px) {
     #logo{
         width: 120px;
-        margin-left: 5em;
-
+        margin-left: 6em;
+        position: relative;
+    }
+    body{
+        height: 100%
     }
     #home {
         width: 25px;
@@ -448,7 +461,6 @@ color: black;
         }
         main>h1{
             font-size: 20px;
-            margin-left: 50px;
         }
         .container>section{
   
@@ -467,7 +479,13 @@ color: black;
         section.details>section{
             margin-left: inherit;
         }
-        main{
-            height: 0%;
+        .table {
+            width: 10%;
+            font-size: 9px;
+            position: initial;
+        }
+        .flexContainer{
+            max-width: fit-content;
+            min-width: max-content;
         }
   }

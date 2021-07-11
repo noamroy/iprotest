@@ -129,11 +129,12 @@
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
                         <?php 
                         echo '<a href="protestList.php?user_id='.$_GET["user_id"].'&page=3"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';
-                        echo '<a href="createprotestfromjson.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-primary" id="returnbtn"> Json </buttom></a>';
+                        echo '<a href="createprotestfromjson.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-secondary"  id="Loginbtn"> Json </buttom></a>';
                         ?>
                     </div>
                 </form>
             </main>
+            </div>
         <script>
             menu();
         </script>

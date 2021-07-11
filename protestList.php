@@ -151,7 +151,7 @@
                     <?php
                         if($n==$counter){
                             $counter = $counter+10;
-                            echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=".$page."&event_counter=".$counter."'><button type='button'>More protests</button></a>";
+                            echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=".$page."&event_counter=".$counter."'><button class='btn btn-primary' id='returnbtn'>More protests</button></a>";
                         }
                     ?>
                 </section>

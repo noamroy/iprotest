@@ -65,7 +65,7 @@
                 <h1>Profile</h1>
                 <form action="#" method="post" id="frm">
                     <?php echo '<input type="hidden" name="user_id" value='.$row[0].'>';?>
-                    <div class="mb-3 form-group">
+                    <div class="form-group">
                         <label for="loginName">Name
                         <?php echo '<input type="text" class="form-control" name="user_name" id="loginName" value="'.$row[2].'" disabled/>';?>
                         </label>
@@ -100,7 +100,7 @@
                         <?php echo '<input type="email" class="form-control" name="user_mail" id="loginMail" value="'.$row[8].'"/>';?>
                         </label>
                     </div>
-                    <div class="buttomsFlexContainer">
+                    <div class="buttom">
                         <button class="btn btn-primary" id="submitbtn" type="submit">Update</button>
                         <?php echo '<a href="homepage.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';?>
                     </div>

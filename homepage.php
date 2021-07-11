@@ -86,10 +86,10 @@
                     </section>
                 </main>
             </div>
-            <footer></footer>
         <script>
             menu();
         </script>
+        <footer></footer>
     </body>
 </html>
 <?php

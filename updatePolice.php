@@ -72,23 +72,23 @@
             <main>
                 <h1>Update Protest</h1>
                 <?php echo '<form name="updateProtest" action="updatePolice.php?user_id='.$row[0].'&prot_id='.$prot_row[0].'" method="POST" autocomplete="on">';?>
-                    <div class="mb-3 form-group">
+                    <div class="form-group">
                         <label class="form-label"> name
                             <?php echo'<input type="text" class="form-control" name="prot_name" value="'.$prot_row[1].'" disabled>';?>
                         </label>
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label class="form-label"> police notes- PLEASE FILL
                             <?php echo '<input type="text"  class="form-control" name="prot_police" value="'.$prot_row[6].'">';?>
                         </label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label"> address
+                    <div class="form-group">
+                        <label class="form-label">address
                             <?php echo'<input type="text" class="form-control" name="prot_address" value="'.$prot_row[2].'" disabled>';?>
                         </label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">
+                    <div class="form-group">
+                        <label class="form-label">date
                             <?php
                                 $time = new DateTime($prot_row[3]);
                                 $date = $time->format('Y-m-d');
@@ -98,20 +98,20 @@
                             ?>
                         </label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">
+                    <div class="form-group">
+                        <label class="form-label">time
                             <?php
                                 $time = $time->format('H:i');
                                 echo'<input type="time" class="form-control" name="prot_time" value="'.$time.'" disabled>';
                             ?>
                         </label>
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label class="form-label"> cause
                             <?php echo'<input type="text" class="form-control" name="prot_cause" value="'.$prot_row[4].'" disabled>';?>
                         </label>
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label class="form-label"> notes
                             <?php echo'<textarea name="notes" class="form-control" rows="4" disabled>'.$prot_row[5].'</textarea>';?>
                         </label>
@@ -122,18 +122,18 @@
                         <label for="user"><input type="radio" name="prot_status" value="Deny"> Deny</label>
                         <label for="user"><input type="radio" name="prot_status" value="reapproved" checked> Fix</label> 
                     </div>
-                    <div class="buttomsFlexContainer">
+                    <div class="buttoms">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
                         <?php echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=3'><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";?>
                     </div>
                 </form>
             </main>
+            </div>
             <script>
                 menu();
             </script>
             <footer>
             </footer>
-        </div>
     </body> 
 </html>
 <?php

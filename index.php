@@ -48,7 +48,7 @@
               <input type="password" class="form-control" name="loginPass" id="loginPass" placeholder="Enter Password" />
             </div>
             <div class="buttomsFlexContainer">
-            <button type="submit" class="btn btn-primary" id=Loginbtn>Log Me In</button>
+            <button type="submit" class="btn btn-primary" id=Loginbtn>Log Me In</button><br>
             <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div>
             </div>
           </form>
@@ -58,8 +58,8 @@
           </p>
         </section> 
       </main>
-      <footer></footer>
     </div>
+    <footer></footer>
     <div class="container">
     </div>
   </body>

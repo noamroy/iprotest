@@ -51,7 +51,7 @@
         <link rel="stylesheet" href="css/style.css"/>
         <title>updateProtest</title>
     </head>
-    <body id="updateprotest">
+    <body id="updatepolice">
         <?php if (!empty($message)) {echo $message;} ?>
         <header class="flexContainer">
             <img src="images/hum.png" class="dropbtn" id="hum" alt="hum" title="menu" herf=#>
@@ -72,10 +72,10 @@
             </a>
         </header>
         <div class="wrapper">
-            <main id="test"> <!-- FIX -->
+            <main>
                 <h1>Update Protest</h1>
                 <?php echo '<form name="updateProtest" action="updateProtest.php?user_id='.$row[0].'&prot_id='.$prot_row[0].'" method="POST" autocomplete="on">';?>
-                    <div class="mb-3 form-group">
+                    <div class="form-group">
                         <label class="form-label"> name
                             <?php echo'<input type="text" class="form-control" name="prot_name" value="'.$prot_row[1].'" require>';?>
                         </label>
@@ -83,13 +83,13 @@
                     <?php echo '<input type="hidden" name="prot_owner" value='.$_GET["user_id"].'>';?>
                     <?php echo '<input type="hidden" name="prot_id" value='.$prot_row[0].'>';?>
                     <?php echo '<input type="hidden" name="prot_police" value="'.$prot_row[6].'">';?>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label class="form-label"> address
                             <?php echo'<input type="text" class="form-control" name="prot_address" value="'.$prot_row[2].'" require>';?>
                         </label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">
+                    <div class="form-group">
+                        <label class="form-label">time
                             <?php
                                 $time = new DateTime($prot_row[3]);
                                 $date = $time->format('Y-m-d');
@@ -99,26 +99,26 @@
                             ?>
                         </label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">
+                    <div class="form-group">
+                        <label class="form-label">date
                             <?php
                                 $time = $time->format('H:i');
                                 echo'<input type="time" class="form-control" name="prot_time" value="'.$time.'" require>';
                             ?>
                         </label>
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label class="form-label"> cause
                             <?php echo'<input type="text" class="form-control" name="prot_cause" value="'.$prot_row[4].'" >';?>
                         </label>
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label class="form-label"> notes
                             <?php echo'<textarea name="notes" class="form-control" rows="4">'.$prot_row[5].'</textarea>';?>
                         </label>
                     </div>
-                    <h2> Share on: </h2>
-                    <div class="form-check">
+                    <h5> Share on: </h5>
+                    <div class="share">
                         <label class="form-check-label">
                             <img src="images/facebook-icon.png">
                             <input class="form-check-input" type="checkbox" name="prot_share_1" value="facebook">
@@ -137,18 +137,19 @@
                         </label>
                         <br>
                     </div>
-                    <div class="buttomsFlexContainer">
+                    <div class="buttom">
                         <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
                         <?php echo "<a href='protestList.php?user_id=".$_GET["user_id"]."&page=3'><buttom class='btn btn-primary' id='returnbtn'> Return </buttom></a>";?>
                     </div>
                 </form>
             </main>
+            </div>
             <script>
                 menu();
             </script>
-            <footer>
-            </footer>
-        </div>
+        
+        <footer>
+        </footer>
     </body> 
 </html>
 <?php
