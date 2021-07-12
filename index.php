@@ -47,9 +47,9 @@
               <label for="loginPass">Password: </label>
               <input type="password" class="form-control" name="loginPass" id="loginPass" placeholder="Enter Password" />
             </div>
-            <div class="buttomsFlexContainer">
-            <button type="submit" class="btn btn-primary" id=Loginbtn>Log Me In</button><br>
             <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div>
+            <div class="buttomsFlexContainer">
+            <button type="submit" class="btn btn-primary" id=Loginbtn>Log Me In</button>
             </div>
           </form>
           <br>

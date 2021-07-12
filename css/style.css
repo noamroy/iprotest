@@ -391,13 +391,22 @@ color: black;
 .share h5 {
     width: 20px;
 }
+
+@media (min-width:1224px)  
+{
+    #logo{
+        position:absolute;
+        margin: auto;
+    }
+}
   @media (min-width: 768px) and (max-width: 990px) {
     #protestPage p{
         font-size: 25px;
     }
     #logo{
         width: 120px;
-        margin-left:25%
+        margin-left: 43%;
+        position: absolute;
     }
     main>h1{
         font-size: 40px;
@@ -410,7 +419,6 @@ color: black;
         font-size: 22px;
     }
     #joinbtn{
-       
         font-size: 22px;
     }
 
@@ -424,8 +432,9 @@ color: black;
     }
     #logo{
     width: 120px;
-    margin-left: 30%;
-    }
+    margin-left: 35%;
+    position: absolute;
+}
 
     #joinbtn{
         width: 80%;
@@ -443,7 +452,7 @@ color: black;
     #logo{
         width: 120px;
         margin-left: 6em;
-        position: relative;
+        position: absolute;
     }
     body{
         height: 100%
