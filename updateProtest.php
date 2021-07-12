@@ -143,11 +143,10 @@
                     </div>
                 </form>
             </main>
-            </div>
-            <script>
-                menu();
-            </script>
-        
+        </div>
+        <script>
+            menu();
+        </script>
         <footer>
         </footer>
     </body> 

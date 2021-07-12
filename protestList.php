@@ -156,8 +156,8 @@
                     ?>
                 </section>
             </main>
-            <footer></footer>
         </div>
+        <footer></footer>
         <script>
         menu();
         </script>

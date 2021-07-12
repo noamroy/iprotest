@@ -67,37 +67,37 @@
                     <?php echo '<input type="hidden" name="user_id" value='.$row[0].'>';?>
                     <div class="form-group">
                         <label for="loginName">Name
-                        <?php echo '<input type="text" class="form-control" name="user_name" id="loginName" value="'.$row[2].'" disabled/>';?>
+                        <?php echo '<input type="text" class="form-control" name="user_name" id="loginName" value="'.$row[2].'" disabled>';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="loginPass">Pass
-                        <?php echo '<input type="password" class="form-control" name="user_pass" id="loginPass" value="'.$row[3].'" require/>';?>
+                        <?php echo '<input type="password" class="form-control" name="user_pass" id="loginPass" value="'.$row[3].'" required>';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="loginAddress">Address
-                        <?php echo '<input type="text" class="form-control" name="user_address" id="loginAddress" value="'.$row[4].'"/>';?>
+                        <?php echo '<input type="text" class="form-control" name="user_address" id="loginAddress" value="'.$row[4].'">';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="loginPhone">Phone
-                        <?php echo '<input type="tel" class="form-control" name="user_phone" id="loginPhone" value="'.$row[5].'"/>';?>
+                        <?php echo '<input type="tel" class="form-control" name="user_phone" id="loginPhone" value="'.$row[5].'">';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="loginFacebook">Facebook
-                        <?php echo '<input type="text" class="form-control" name="user_facebook" id="loginFacebook" value="'.$row[6].'"/>';?>
+                        <?php echo '<input type="text" class="form-control" name="user_facebook" id="loginFacebook" value="'.$row[6].'">';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="loginTwitter">Twitter
-                        <?php echo '<input type="text" class="form-control" name="user_twitter" id="loginTwitter" value="'.$row[7].'"/>';?>
+                        <?php echo '<input type="text" class="form-control" name="user_twitter" id="loginTwitter" value="'.$row[7].'">';?>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="loginMail">Mail
-                        <?php echo '<input type="email" class="form-control" name="user_mail" id="loginMail" value="'.$row[8].'"/>';?>
+                        <?php echo '<input type="email" class="form-control" name="user_mail" id="loginMail" value="'.$row[8].'" required>';?>
                         </label>
                     </div>
                     <div class="buttom">

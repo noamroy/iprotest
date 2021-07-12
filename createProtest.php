@@ -71,69 +71,69 @@
                 <main> 
                     <h1>Create Protest</h1>
                     <?php echo '<form name="createProtest" action="createProtest.php?user_id="'.$row[0].' method="POST" autocomplete="on">';?>
-                    <div class="mb-3 form-group">
-                        <label class="form-label"> 
-                            <input type="text" class="form-control" name="prot_name" placeholder="Protest Name" require>
-                        </label>
-                    </div>
-                    <?php echo '<input type="hidden" name="prot_owner" value='.$row[0].'>';?>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="text" class="form-control" name="prot_address" placeholder="Address" require>
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <?php
-                            $dts = new DateTime();
-                            $dts = $dts->format('Y-m-d');
-                            echo'<input type="date" class="form-control" name="prot_date" placeholder="Date" min="'.$dts.'" require>';
+                        <div class="mb-3 form-group">
+                            <label class="form-label"> 
+                                <input type="text" class="form-control" name="prot_name" placeholder="Protest Name" required>
+                            </label>
+                        </div>
+                        <?php echo '<input type="hidden" name="prot_owner" value='.$row[0].'>';?>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <input type="text" class="form-control" name="prot_address" placeholder="Address" required>
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <?php
+                                $dts = new DateTime();
+                                $dts = $dts->format('Y-m-d');
+                                echo'<input type="date" class="form-control" name="prot_date" placeholder="Date" min="'.$dts.'" required>';
+                                ?>
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <input type="time" class="form-control" name="prot_time"  placeholder="Time" required>
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <input type="text" class="form-control" name="prot_cause" placeholder="Cause">
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <textarea name="notes" class="form-control" placeholder="prot_notes" rows="4"></textarea>
+                            </label>
+                        </div>
+                        <h2> Share on: </h2>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <img src="images/facebook-icon.png">
+                                <input class="form-check-input" type="checkbox" name="prot_share_1" value="facebook">
+                            </label>
+                            <label class="form-check-label">
+                                <img src="images/whatsapp-icon.png">
+                                <input class="form-check-input" type="checkbox" name="prot_share_2" value="whats_up">
+                            </label>
+                            <label class="form-check-label"> 
+                                <img src="images/twitter-icon.png">
+                                <input class="form-check-input" type="checkbox" name="prot_share_3" value="twitter">
+                            </label>
+                            <label class="form-check-label"> 
+                                <img src="images/mail-icon.png">
+                                <input class="form-check-input" type="checkbox" name="prot_share_4" value="mail">
+                            </label><br>
+                        </div>
+                        <div class="buttomsFlexContainer">
+                            <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
+                            <?php 
+                            echo '<a href="protestList.php?user_id='.$_GET["user_id"].'&page=3"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';
+                            echo '<a href="createprotestfromjson.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-secondary"  id="Loginbtn"> Json </buttom></a>';
                             ?>
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="time" class="form-control" name="prot_time"  placeholder="Time" require>
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="text" class="form-control" name="prot_cause" placeholder="Cause">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <textarea name="notes" class="form-control" placeholder="prot_notes" rows="4"></textarea>
-                        </label>
-                    </div>
-                    <h2> Share on: </h2>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <img src="images/facebook-icon.png">
-                            <input class="form-check-input" type="checkbox" name="prot_share_1" value="facebook">
-                        </label>
-                        <label class="form-check-label">
-                            <img src="images/whatsapp-icon.png">
-                            <input class="form-check-input" type="checkbox" name="prot_share_2" value="whats_up">
-                        </label>
-                        <label class="form-check-label"> 
-                            <img src="images/twitter-icon.png">
-                            <input class="form-check-input" type="checkbox" name="prot_share_3" value="twitter">
-                        </label>
-                        <label class="form-check-label"> 
-                            <img src="images/mail-icon.png">
-                            <input class="form-check-input" type="checkbox" name="prot_share_4" value="mail">
-                        </label><br>
-                    </div>
-                    <div class="buttomsFlexContainer">
-                        <input class="btn btn-primary" id="submitbtn" type="submit" value="Submit">
-                        <?php 
-                        echo '<a href="protestList.php?user_id='.$_GET["user_id"].'&page=3"><buttom class="btn btn-primary" id="returnbtn"> Return </buttom></a>';
-                        echo '<a href="createprotestfromjson.php?user_id='.$_GET["user_id"].'"><buttom class="btn btn-secondary"  id="Loginbtn"> Json </buttom></a>';
-                        ?>
-                    </div>
-                </form>
-            </main>
+                        </div>
+                    </form>
+                </main>
             </div>
         <script>
             menu();

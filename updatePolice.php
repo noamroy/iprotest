@@ -128,12 +128,12 @@
                     </div>
                 </form>
             </main>
-            </div>
-            <script>
-                menu();
-            </script>
-            <footer>
-            </footer>
+        </div>
+        <script>
+            menu();
+        </script>
+        <footer>
+        </footer>
     </body> 
 </html>
 <?php

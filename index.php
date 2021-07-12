@@ -41,11 +41,11 @@
           <form action="#" method="post" id="frm">
             <div class="mb-3 form-group required">
               <label for="loginMail">User name: </label>
-              <input type="text" class="form-control" name="loginName" id="loginName" placeholder="Enter Name" />
+              <input type="text" class="form-control" name="loginName" id="loginName" placeholder="Enter Name" required>
             </div><br>
             <div class="mb-3">
               <label for="loginPass">Password: </label>
-              <input type="password" class="form-control" name="loginPass" id="loginPass" placeholder="Enter Password" />
+              <input type="password" class="form-control" name="loginPass" id="loginPass" placeholder="Enter Password" required>
             </div>
             <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div>
             <div class="buttomsFlexContainer">

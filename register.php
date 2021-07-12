@@ -1,14 +1,13 @@
 <?php
     include 'db.php';
     include "config.php";
-    if(!empty($_POST["loginType"])) { //true if form was submitted
+    if(!empty($_POST["loginType"])) {
       $query ="SELECT * FROM tbl_87_users WHERE user_name='"
         .$_POST["loginName"]
         ."' or user_mail='"
         .$_POST["loginMail"]
         ."';";
-      echo $query; // can't start echo if header comer after it
-      $result = mysqli_query($connection , $query);
+            $result = mysqli_query($connection , $query);
       $row = mysqli_fetch_array($result); 
       if(is_array($row)) {
         $message = 'Username or email already been used!';
@@ -30,7 +29,7 @@
         .$_POST["loginMail"]."');";
         $result = mysqli_query($connection , $query);
         if ($result){
-          header ('location: '.HAGASHA_URL.'index.php');  //SUBMIT FIX
+          header ('location: '.HAGASHA_URL.'index.php');
         }
       }
     }
@@ -66,31 +65,31 @@
           </div>
           <div class="mb-3">
             <label for="loginName"></label>
-            <input type="text" class="form-control" name="loginName" id="loginName" placeholder="Enter Name" require/>
+            <input type="text" class="form-control" name="loginName" id="loginName" placeholder="Enter Name" required>
           </div>
           <div class="mb-3">
             <label for="loginPass"></label>
-            <input type="password" class="form-control" name="loginPass" id="loginPass" placeholder="Enter Password" require/>
+            <input type="password" class="form-control" name="loginPass" id="loginPass" placeholder="Enter Password" required>
           </div>
           <div class="mb-3">
             <label for="loginAddress"></label>
-            <input type="text" class="form-control" name="loginAddress" id="loginAddress" placeholder="Enter Address" />
+            <input type="text" class="form-control" name="loginAddress" id="loginAddress" placeholder="Enter Address">
           </div>
           <div class="mb-3">
             <label for="loginPhone"></label>
-            <input type="tel" class="form-control" name="loginPhone" id="loginPhone" placeholder="Enter Phone Number" />
+            <input type="tel" class="form-control" name="loginPhone" id="loginPhone" placeholder="Enter Phone Number">
           </div>
           <div class="mb-3">
             <label for="loginFacebook"></label>
-            <input type="text" class="form-control" name="loginFacebook" id="loginFacebook" placeholder="Enter Facebook" />
+            <input type="text" class="form-control" name="loginFacebook" id="loginFacebook" placeholder="Enter Facebook">
           </div>
           <div class="mb-3">
             <label for="loginTwitter"></label>
-            <input type="text" class="form-control" name="loginTwitter" id="loginTwitter" placeholder="Enter Twitter" />
+            <input type="text" class="form-control" name="loginTwitter" id="loginTwitter" placeholder="Enter Twitter">
           </div>
           <div class="mb-3">
             <label for="loginMail"></label>
-            <input type="email" class="form-control" name="loginMail" id="loginMail" placeholder="Enter Mail" require/>
+            <input type="email" class="form-control" name="loginMail" id="loginMail" placeholder="Enter Mail" required>
           </div>
           <div class="buttomsFlexContainer">
             <button type="submit" class="btn btn-primary">Register</button>
